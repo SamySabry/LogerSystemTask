@@ -1,4 +1,7 @@
 
+using DominModels.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace LogerSystemTask
 {
     public class Program
@@ -10,6 +13,8 @@ namespace LogerSystemTask
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<LogContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("LoggerTask")));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
