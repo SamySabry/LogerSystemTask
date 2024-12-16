@@ -1,6 +1,10 @@
 
-using DominModels.Context;
+
+using BLService.LogerService;
+using LoggingSystemTask.Context;
+using LoggingSystemTask.Mapper;
 using Microsoft.EntityFrameworkCore;
+using Reposatries.LogerRepo;
 
 namespace LogerSystemTask
 {
@@ -18,6 +22,10 @@ namespace LogerSystemTask
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ILogerRepo, LogerRepo>();
+            builder.Services.AddScoped<ILogerService, LogerService>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
 
